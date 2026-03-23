@@ -45,7 +45,7 @@ function App() {
       />
       
       {/* Main Container */}
-      <div 
+      <main 
         className={`mx-auto ${activeTab === 'Landing' ? 'w-full' : 'w-[80vw] min-w-[80vw] max-w-xl pt-[120px] pb-10'} flex flex-col gap-8 opacity-0 max-md:hidden`} 
         style={{ animation: 'fadeIn 0.8s ease-out 0.2s forwards' }}
       >
@@ -53,9 +53,10 @@ function App() {
         <ChatTab visible={activeTab === 'Chat'} user={user} />
         
         {activeTab === 'Landing' && <LandingPage loggedIn={true} onLogin={() => {}} />}
-      </div>
+      </main>
     </>
   );
 }
+
 
 export default App;

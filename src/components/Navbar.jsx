@@ -15,7 +15,7 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
         <div className="w-10 h-10 rounded-xl bg-linear-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(99,102,241,0.5)]">
           <Sparkles size={20} className="text-white" />
         </div>
-        VIBE.
+        1nap<span className="text-cyan-400">Docs</span>
       </div>
       
       <div className="flex gap-4">
@@ -41,16 +41,18 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
         {user && (
           <div className="flex items-center gap-4 ml-6 pl-6 border-l border-white/10 h-10">
             <div className="flex flex-col items-end leading-tight">
-              <span className="text-[9px] uppercase tracking-widest text-slate-500 font-bold opacity-70">Session Nick</span>
+              <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold opacity-70">Session Nick</span>
               <span className="text-sm font-bold text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.3)]">{user.username}</span>
             </div>
             <button 
               onClick={onLogout}
               className="p-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 transition-all group active:scale-95"
               title="Logout Session"
+              aria-label="Logout"
             >
               <LogOut size={16} className="group-hover:rotate-12 transition-transform" />
             </button>
+
           </div>
         )}
       </div>

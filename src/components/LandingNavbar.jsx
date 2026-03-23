@@ -14,7 +14,7 @@ const LandingNavbar = ({ onLoginClick, onHomeClick }) => {
         <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center shadow-[0_0_20px_rgba(79,70,229,0.4)]">
           <Sparkles size={22} className="text-white fill-white/20" />
         </div>
-        VIBE<span className="text-indigo-400">DOCS</span>
+        1nap<span className="text-indigo-400">Docs</span>
       </a>
 
       <div className="flex items-center gap-8">

@@ -73,9 +73,11 @@ const ChatTab = ({ visible }) => {
             type="submit"
             disabled={isChatLoading || !chatInput.trim()}
             className="px-6 rounded-xl bg-linear-to-br from-indigo-500 to-cyan-500 text-white flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] transition-all cursor-pointer"
+            aria-label="Send Message"
           >
             <Send size={22} />
           </button>
+
         </form>
       </SectionCard>
     </Canvas>

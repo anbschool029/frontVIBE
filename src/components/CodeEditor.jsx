@@ -37,8 +37,8 @@ const CodeEditor = ({ title, icon: Icon, value, onChange }) => {
         {title}
       </div>
       <div className="flex bg-black/40 rounded-[20px] overflow-hidden border border-white/10 relative min-h-[120px] w-full group">
-        <div className="bg-white/5 py-6 px-2 w-[45px] text-right text-slate-600 font-mono text-[0.85rem] leading-[1.6] border-r border-white/10 select-none">
-          {lineNumbers.map(n => <div key={n}>{n}</div>)}
+        <div className="bg-white/5 py-6 px-2 w-[45px] text-right text-slate-500 font-mono text-[0.85rem] leading-[1.6] border-r border-white/10 select-none">
+          {lineNumbers.map(n => <div key={n} aria-hidden="true">{n}</div>)}
         </div>
         <div className="grow relative overflow-auto custom-scrollbar">
           {(() => {
@@ -57,7 +57,7 @@ const CodeEditor = ({ title, icon: Icon, value, onChange }) => {
                   }
                 }}
                 padding={24}
-                className="font-mono text-[0.85rem] leading-[1.6] min-h-[120px] outline-none hljs bg-transparent"
+                className="font-mono text-[0.85rem] leading-[1.6] min-h-[120px] outline-none hljs bg-transparent text-slate-200"
                 textareaClassName="outline-none"
                 style={{
                   fontFamily: '"Fira Code", "JetBrains Mono", monospace',

@@ -45,7 +45,7 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
   };
 
   return (
-    <div id="top" className="min-h-screen bg-[#0f172a] text-slate-50 font-[Outfit] relative overflow-x-hidden no-scrollbar flex flex-col scroll-smooth">
+    <main id="top" className="min-h-screen bg-[#0f172a] text-slate-50 font-[Outfit] relative overflow-x-hidden no-scrollbar flex flex-col scroll-smooth">
       {/* Mobile Warning Overlay */}
       <div className="hidden max-md:flex flex-col items-center justify-center text-center p-10 bg-slate-900/80 backdrop-blur-3xl border border-white/10 rounded-[40px] max-w-[90%] z-50 shadow-2xl">
         <div className="w-16 h-16 bg-indigo-500/20 rounded-2xl flex items-center justify-center mb-6 border border-indigo-500/30">
@@ -55,7 +55,7 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
         </div>
         <h2 className="text-2xl font-bold mb-4 bg-linear-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">Desktop Only</h2>
         <p className="text-slate-400 leading-relaxed">
-          VIBE AI's elite documentation suite is currently optimized for **Tablet or PC** to provide the most efficient coding workflow.
+          1nap Doc's elite documentation suite is currently optimized for **Tablet or PC** to provide the most efficient coding workflow.
         </p>
       </div>
 
@@ -95,7 +95,7 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
                       {String.fromCharCode(64 + i)}
                     </div>
                   ))}
-                  <div className="pl-6 text-xs text-slate-500 font-bold self-center">USED BY 1,000+ EARLY TEAMS</div>
+                  <div className="pl-6 text-xs text-slate-400 font-bold self-center">USED BY 1,000+ EARLY TEAMS</div>
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
             {/* Login Left: Brand Context */}
             <div className="p-12 bg-indigo-600/10 flex flex-col justify-between border-r border-white/5">
               <div>
-                <h2 className="text-4xl font-black mb-6 leading-tight">Sync Your <br />Vibe Session</h2>
+                <h2 className="text-4xl font-black mb-6 leading-tight">Sync Your <br />1nap Session</h2>
                 <p className="text-indigo-400 font-medium mb-12">No passwords. Just a key. Your history follows you wherever you code.</p>
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
@@ -139,7 +139,7 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
             <div className="p-12 md:p-16">
               <form onSubmit={handleLogin} className="space-y-8">
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-1">Nickname</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-1">Nickname</label>
                   <input 
                     type="text" 
                     placeholder="e.g. LeadEngineer"
@@ -150,7 +150,7 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
                 </div>
 
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-1">Secret Key</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-1">Secret Key</label>
                   <input 
                     type="password" 
                     placeholder="Your unique session key"
@@ -168,13 +168,13 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
                     disabled={loading}
                     className="w-full py-5 bg-white text-[#0f172a] hover:bg-indigo-400 hover:text-white rounded-2xl font-black transition-all hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] active:scale-[0.98] disabled:opacity-50 text-lg"
                   >
-                    {loading ? 'SYNCING IDENTITY...' : 'ENTER THE VIBE'}
+                    {loading ? 'SYNCING IDENTITY...' : 'ENTER THE 1NAP'}
                   </button>
 
                   <button 
                     type="button"
                     onClick={() => setShowLogin(false)}
-                    className="w-full text-slate-500 text-xs font-bold uppercase tracking-widest hover:text-slate-300 transition-colors"
+                    className="w-full text-slate-400 text-xs font-bold uppercase tracking-widest hover:text-slate-300 transition-colors"
                   >
                     Return to Hero
                   </button>
@@ -245,7 +245,7 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
                     {f.icon && <f.icon size={28} className="text-indigo-400" />}
                   </div>
                   <h3 className="text-lg font-black tracking-tight text-white mb-4">{f.title}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed font-bold">{f.desc}</p>
+                  <p className="text-slate-400 text-sm leading-relaxed font-bold">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -258,8 +258,8 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div className="space-y-8">
                 <h2 className="text-5xl font-black leading-tight">Obsessed with <br/><span className="text-purple-400">Architecture.</span></h2>
-                <div className="space-y-6 text-slate-500 font-bold leading-relaxed">
-                  <p>We built VIBE using the <strong>Ports and Adapters</strong> (Hexagonal) pattern. This means our domain logic is completely isolated from the database and AI choice.</p>
+                <div className="space-y-6 text-slate-400 font-bold leading-relaxed">
+                  <p>We built 1nap Docs using the <strong>Ports and Adapters</strong> (Hexagonal) pattern. This means our domain logic is completely isolated from the database and AI choice.</p>
                   <p>Whether we're using SQLite or Postgres—or swapping Llama for Gemini—the core engine remains untouched. This is documentation for developers, built by developers.</p>
                 </div>
                 <div className="flex gap-4">
@@ -293,8 +293,9 @@ const LandingPage = ({ onLogin, loggedIn = false }) => {
         <Footer />
       </div>
     </div>
-  </div>
+  </main>
   );
 };
+
 
 export default LandingPage;

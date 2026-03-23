@@ -1,6 +1,6 @@
-import html2pdf from 'html2pdf.js';
 
 export const downloadTextFile = (filename, content) => {
+
   const blob = new Blob([content], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
