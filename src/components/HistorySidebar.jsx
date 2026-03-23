@@ -8,7 +8,7 @@ import { deriveBaseFilename } from '../utils/fileNaming';
  * Sidebar component that pulls both Doc and Explain histories natively
  * from the FastAPI endpoints and lists them chronologically.
  */
-const HistorySidebar = ({ onHistorySelect, refreshTrigger }) => {
+const HistorySidebar = ({ onHistorySelect, refreshTrigger, user }) => {
   const [docsHistory, setDocsHistory] = useState([]);
   const [explainHistory, setExplainHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -16,8 +16,8 @@ const HistorySidebar = ({ onHistorySelect, refreshTrigger }) => {
   const fetchHistories = async () => {
     try {
       const [docsRes, explainRes] = await Promise.all([
-        fetch('http://127.0.0.1:8000/history/docs').catch(() => null),
-        fetch('http://127.0.0.1:8000/history/explain').catch(() => null)
+        fetch(`${import.meta.env.VITE_API_URL}/history/docs?user_id=${user.user_id}`).catch(() => null),
+        fetch(`${import.meta.env.VITE_API_URL}/history/explain?user_id=${user.user_id}`).catch(() => null)
       ]);
 
       if (docsRes?.ok) {
@@ -46,7 +46,7 @@ const HistorySidebar = ({ onHistorySelect, refreshTrigger }) => {
   const handleDelete = async (e, id, type) => {
     e.stopPropagation(); // securely prevent row click selection event
     try {
-      const res = await fetch(`http://127.0.0.1:8000/history/${type}/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/history/${type}/${id}`, {
         method: 'DELETE'
       });
       if (res.ok) {

@@ -7,7 +7,7 @@ import { downloadTextFile, downloadPDF } from '../utils/downloader';
  * 
  * @returns {Object} DocGen state and handler functions
  */
-export const useDocGen = () => {
+export const useDocGen = (user) => {
   const [activeSettings, setActiveSettings] = useState(['Concise']);
   const [customStyle, setCustomStyle] = useState(`// Describe your custom tone or style here
 // Example: "Make it sound very professional and explain the business logic clearly."
@@ -73,7 +73,7 @@ Make it incredibly easy to understand for beginners.`);
     setLastAction(mode);
     setMarkdownContent(mode === "explain" ? 'Analyzing and explaining your code...\n\n_Please wait..._' : 'Generating your documentation...\n\n_Please wait..._');
     try {
-      const response = await fetch('http://127.0.0.1:8000/documentation-generator', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/documentation-generator`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -81,6 +81,7 @@ Make it incredibly easy to understand for beginners.`);
           styles: activeSettings,
           custom_style: customStyle,
           mode: mode,
+          user_id: user.user_id
         }),
       });
       const data = await response.json();
@@ -91,7 +92,7 @@ Make it incredibly easy to understand for beginners.`);
       }
       setRefreshTrigger(Date.now()); // Explicitly ping history reload!
     } catch (error) {
-      setMarkdownContent(`**Connection Error:** Could not connect to the backend API.\n\nMake sure the Python FastAPI backend is running at \`http://127.0.0.1:8000\``);
+      setMarkdownContent(`**Connection Error:** Could not connect to the backend API.\n\nMake sure the Python FastAPI backend is running at \`${import.meta.env.VITE_API_URL}\``);
     }
     setIsLoading(false);
   };
@@ -125,7 +126,7 @@ Make it incredibly easy to understand for beginners.`);
   const loadHistoryRecord = async (id, type) => {
     try {
       setIsLoading(true);
-      const res = await fetch(`http://127.0.0.1:8000/history/${type}/${id}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/history/${type}/${id}`);
       if (res.ok) {
         const data = await res.json();
         setSnippedCode(data.incoming_code);

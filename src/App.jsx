@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import DocGenTab from './components/DocGenTab';
 import ChatTab from './components/ChatTab';
-import AboutTab from './components/AboutTab';
+import LandingPage from './components/LandingPage';
 import './index.css';
 
 /**
@@ -11,6 +11,24 @@ import './index.css';
  */
 function App() {
   const [activeTab, setActiveTab] = useState('DocGen');
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem('vibe_user');
+    return saved ? JSON.parse(saved) : null;
+  });
+
+  const handleLogin = (userData) => {
+    setUser(userData);
+    localStorage.setItem('vibe_user', JSON.stringify(userData));
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('vibe_user');
+  };
+
+  if (!user) {
+    return <LandingPage onLogin={handleLogin} />;
+  }
 
   return (
     <>
@@ -19,22 +37,22 @@ function App() {
       </div>
       
       {/* Top Navigation Bar */}
-      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Navbar 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+        user={user} 
+        onLogout={handleLogout} 
+      />
       
-      {/* Main Container - padding accounts for fixed navbar */}
+      {/* Main Container */}
       <div 
-        className="w-[80vw] min-w-[80vw] max-w-xl mx-auto pt-[120px] pb-10 flex flex-col gap-8 opacity-0 max-md:hidden" 
+        className={`mx-auto ${activeTab === 'Landing' ? 'w-full' : 'w-[80vw] min-w-[80vw] max-w-xl pt-[120px] pb-10'} flex flex-col gap-8 opacity-0 max-md:hidden`} 
         style={{ animation: 'fadeIn 0.8s ease-out 0.2s forwards' }}
       >
-        {/*
-          By rendering DocGenTab and ChatTab simultaneously and toggling visibility, 
-          we preserve their respective internal component states perfectly.
-        */}
-        <DocGenTab visible={activeTab === 'DocGen'} />
-        <ChatTab visible={activeTab === 'Chat'} />
+        <DocGenTab visible={activeTab === 'DocGen'} user={user} />
+        <ChatTab visible={activeTab === 'Chat'} user={user} />
         
-        {/* Because AboutTab has no state, we can unmount it safely to save memory */}
-        {activeTab === 'About' && <AboutTab />}
+        {activeTab === 'Landing' && <LandingPage loggedIn={true} onLogin={() => {}} />}
       </div>
     </>
   );

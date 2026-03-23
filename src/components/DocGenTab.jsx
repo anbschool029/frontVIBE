@@ -14,7 +14,7 @@ import { Modal } from './ui/Modal';
  * Main application tab containing the Document Generator 
  * Reconstructed using reusable UI primitives
  */
-const DocGenTab = ({ visible }) => {
+const DocGenTab = ({ visible, user }) => {
   const {
     activeSettings,
     setActiveSettings,
@@ -32,7 +32,7 @@ const DocGenTab = ({ visible }) => {
     handleDownload,
     loadHistoryRecord,
     refreshTrigger
-  } = useDocGen();
+  } = useDocGen(user);
 
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
@@ -64,7 +64,7 @@ const DocGenTab = ({ visible }) => {
         <CanvasRow>
           
           <div className="sticky top-[120px] self-start h-[calc(100vh-140px)] w-[260px] max-md:w-full shrink-0">
-            <HistorySidebar onHistorySelect={loadHistoryRecord} refreshTrigger={refreshTrigger} />
+            <HistorySidebar onHistorySelect={loadHistoryRecord} refreshTrigger={refreshTrigger} user={user} />
           </div>
 
           {/* Left Column: Inputs */}
