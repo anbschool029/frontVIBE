@@ -16,7 +16,7 @@ import './index.css';
  */
 function App() {
   const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('vibe_user');
+    const saved = sessionStorage.getItem('vibe_user');
     return saved ? JSON.parse(saved) : null;
   });
 
@@ -27,7 +27,7 @@ function App() {
 
   const handleLogin = (userData) => {
     setUser(userData);
-    localStorage.setItem('vibe_user', JSON.stringify(userData));
+    sessionStorage.setItem('vibe_user', JSON.stringify(userData));
     setActiveTab('DocGen');
   };
 
@@ -42,7 +42,7 @@ function App() {
     setUser(null);
     setProject(null);
     setFile(null);
-    localStorage.removeItem('vibe_user');
+    sessionStorage.removeItem('vibe_user');
     setActiveTab('Landing');
   };
 
