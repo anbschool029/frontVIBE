@@ -1,72 +1,98 @@
-## 📦 What the Function Does
-`calculateTotal` computes the **total cost** of a list of items and optionally applies a percentage discount.
+# ✨ VIBE: The Vibrant Intelligent Build Environment
+
+VIBE is a cutting-edge, high-performance **React frontend** designed to transform how developers interact with their code. It provides a premium, "Glassmorphic" user interface for generating AI-powered documentation, analyzing complex logic, and managing collaborative workspaces in real-time.
 
 ---
 
-## 🔧 Parameters
+## 🎨 Premium UI & Experience
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `items` | `Array` of objects | Each object must have:<br>• `price` – numeric unit price<br>• `qty` – numeric quantity |
-| `discountParam` | `Number` | Discount percentage (e.g., `10` for 10 %). Ignored if ≤ 0. |
-
----
-
-## 📤 Return Value
-- **Number** – the final amount after summing all line items and subtracting any discount.
+VIBE isn't just a tool; it's an experience. The interface is built with **Tailwind CSS 4** and customized for:
+- **Vibrant Aesthetics**: Deep slate backgrounds with indigo and cyan neon accents.
+- **Micro-Animations**: Smooth transitions and hover effects that make the app feel alive.
+- **Glassmorphism**: Elegant translucent panels and blurred backgrounds for a modern look.
+- **Responsive Layout**: Fluid design that adapts to various screen sizes with a focus on PC and Tablet performance.
 
 ---
 
-## 🛠️ Step‑by‑Step Logic
+## 🚀 Key Features & Modules
 
-1. **Initialize accumulator**  
-   ```js
-   let total = 0;
+### 1. 📝 AI Documentation Generator (`DocGenTab`)
+- **Purpose**: The heart of VIBE. It allows users to paste code and receive perfectly formatted documentation block-by-block.
+- **Logic**: Select from pre-configured styles (Modern, Concise, Detailed) or provide a custom tone reference.
+- **Outputs**: Generates native docstrings and Markdown fences.
+
+### 2. 💬 Intelligent Chat Stream (`ChatTab`)
+- **Purpose**: A direct collaboration channel with the AI.
+- **Interactive**: Ask questions about specific files or ask for logic refactors on the fly.
+
+### 3. 📂 Workspace Management (`Workspace`)
+- **Purpose**: Organizes your tasks into Projects and Files.
+- **Cloud-Synced**: All project structures are synced to the backend with cascading data safety.
+
+### 4. 📊 Community Leaderboard (`CommunityTab`)
+- **Purpose**: Real-time activity tracking using the **TripCode Identity System**.
+- **Features**: Live "Online/Offline" indicators and contribution rankings (Docs vs Explanations).
+
+---
+
+## 🏗️ Technical Stack
+
+- **Framework**: [React 19](https://react.dev) (Latest Concurrent Features).
+- **Build Tool**: [Vite 8](https://vite.dev) (Ultra-fast HMR).
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com) & [Lucide React Icons](https://lucide.dev).
+- **Code Editing**: [React Simple Code Editor](https://github.com/satya164/react-simple-code-editor) with [PrismJS](https://prismjs.com).
+- **Markdown Rendering**: [React Markdown](https://github.com/remarkjs/react-markdown) + [Remark GFM](https://github.com/remarkjs/remark-gfm).
+- **PDF/Image Export**: [jspdf](https://github.com/parallax/jsPDF) and [html2canvas](https://html2canvas.hertzen.com).
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- [Node.js](https://nodejs.org) (v20+ recommended).
+- [npm](https://www.npmjs.com) or [pnpm](https://pnpm.io).
+
+### 🛠️ Local Installation
+
+1. **Clone and Enter**:
+   ```bash
+   git clone <repository-url>
+   cd frontVIBE
    ```
-   Starts the running total at zero.
 
-2. **Iterate through every item**  
-   ```js
-   for (let i = 0; i < items.length; i++) {
-       total += items[i].price * items[i].qty;
-   }
+2. **Configure Environment**:
+   Create a `.env` file:
+   ```env
+   VITE_API_URL=http://localhost:8000/api
    ```
-   - Multiply each item's `price` by its `qty`.  
-   - Add the result to `total`.  
-   - After the loop, `total` equals the sum of *price × quantity* for all items.
 
-3. **Apply discount if requested**  
-   ```js
-   if (discountParam > 0) {
-       total = total - (total * (discountParam / 100));
-   }
+3. **Install Dependencies**:
+   ```bash
+   npm install
    ```
-   - Checks that the discount is a positive number.  
-   - Calculates the discount amount: `total * (discountParam / 100)`.  
-   - Subtracts that amount from the current `total`.
 
-4. **Result**  
-   The function ends (the missing `return total;` is implied) with the final amount ready for display, invoicing, or further processing.
+4. **Start Development Server**:
+   ```bash
+   npm run dev
+   ```
+   *Visit `http://localhost:5173` to see VIBE in action.*
 
 ---
 
-## 🚀 Quick Example
+## 🏁 Deployment
 
-```js
-const cart = [
-  { price: 20, qty: 2 }, // $40
-  { price: 15, qty: 1 }  // $15
-];
-const final = calculateTotal(cart, 10); // 10 % discount
-// total before discount = 55
-// discount = 5.5
-// final = 49.5
-```
+This frontend is optimized for **Vercel** or **Netlify**:
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **Single File Mode**: Supported via `vite-plugin-singlefile` for offline usage.
 
 ---
 
-## 📝 Key Takeaways for Beginners
-- **Looping** (`for`) lets you handle an arbitrary number of items.  
-- **Multiplication** (`price * qty`) gives the line‑item cost.  
-- **Conditional discount** runs only when a positive percentage is supplied.  
-- The function returns a **single numeric value** that represents the payable amount.  # frontVIBE
+## 🛡️ Session Security
+
+VIBE prioritizes your privacy and session integrity:
+- **Session-Only Storage**: User data is kept in `sessionStorage`. Closing your tab or browser **instantly expires** your session.
+- **Beacons**: Uses `navigator.sendBeacon` to notify the backend precisely when you disconnect, keeping the leaderboard accurate.
+
+---
+*Developed with ❤️ by the Phok Keomonnyratanak.*
