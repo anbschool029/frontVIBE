@@ -8,16 +8,17 @@ import { deriveBaseFilename } from '../utils/fileNaming';
  * Sidebar component that pulls both Doc and Explain histories natively
  * from the FastAPI endpoints and lists them chronologically.
  */
-const HistorySidebar = ({ onHistorySelect, refreshTrigger, user }) => {
+const HistorySidebar = ({ onHistorySelect, refreshTrigger, user, file }) => {
   const [docsHistory, setDocsHistory] = useState([]);
   const [explainHistory, setExplainHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchHistories = async () => {
     try {
+      const fileQuery = file ? `&file_id=${file.id}` : '';
       const [docsRes, explainRes] = await Promise.all([
-        fetch(`${import.meta.env.VITE_API_URL}/history/docs?user_id=${user.user_id}`).catch(() => null),
-        fetch(`${import.meta.env.VITE_API_URL}/history/explain?user_id=${user.user_id}`).catch(() => null)
+        fetch(`${import.meta.env.VITE_API_URL}/history/docs?user_id=${user.user_id}${fileQuery}`).catch(() => null),
+        fetch(`${import.meta.env.VITE_API_URL}/history/explain?user_id=${user.user_id}${fileQuery}`).catch(() => null)
       ]);
 
       if (docsRes?.ok) {
@@ -41,7 +42,7 @@ const HistorySidebar = ({ onHistorySelect, refreshTrigger, user }) => {
     // Set up a simple broad poll to refresh history every 10s if the user is active
     const interval = setInterval(fetchHistories, 10000);
     return () => clearInterval(interval);
-  }, [refreshTrigger]);
+  }, [refreshTrigger, file]);
 
   const handleDelete = async (e, id, type) => {
     e.stopPropagation(); // securely prevent row click selection event

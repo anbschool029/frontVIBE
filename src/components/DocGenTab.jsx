@@ -6,7 +6,6 @@ import HistorySidebar from './HistorySidebar';
 import { useDocGen } from '../hooks/useDocGen';
 import { Canvas, CanvasRow, CanvasColumn } from './ui/Canvas';
 import { SectionCard } from './ui/SectionCard';
-import { SectionHeader } from './ui/SectionHeader';
 import { Button } from './ui/Button';
 import { Modal } from './ui/Modal';
 
@@ -14,7 +13,7 @@ import { Modal } from './ui/Modal';
  * Main application tab containing the Document Generator 
  * Reconstructed using reusable UI primitives
  */
-const DocGenTab = ({ visible, user }) => {
+const DocGenTab = ({ visible, user, project, file }) => {
   const {
     activeSettings,
     setActiveSettings,
@@ -32,7 +31,7 @@ const DocGenTab = ({ visible, user }) => {
     handleDownload,
     loadHistoryRecord,
     refreshTrigger
-  } = useDocGen(user);
+  } = useDocGen(user, project, file);
 
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
@@ -64,7 +63,7 @@ const DocGenTab = ({ visible, user }) => {
         <CanvasRow>
           
           <div className="sticky top-[120px] self-start h-[calc(100vh-140px)] w-[260px] max-md:w-full shrink-0">
-            <HistorySidebar onHistorySelect={loadHistoryRecord} refreshTrigger={refreshTrigger} user={user} />
+            <HistorySidebar onHistorySelect={loadHistoryRecord} refreshTrigger={refreshTrigger} user={user} file={file} />
           </div>
 
           {/* Left Column: Inputs */}
@@ -114,48 +113,55 @@ const DocGenTab = ({ visible, user }) => {
 
           {/* Right Column: Read-only DocGens Output (Locked Sticky!) */}
           <CanvasColumn className="sticky top-[120px] self-start h-[calc(100vh-140px)]">
-            <SectionHeader 
-              icon={FileText} 
-              title="DocGens" 
-              rightElement={
-                <>
-                  <Button 
-                    onClick={onDownloadClicked}
-                    disabled={!lastAction || isLoading}
-                    icon={Download}
-                    variant="ghost" 
-                  >
-                    DOWNLOAD
-                  </Button>
-                  <Button 
-                    onClick={handleCopyDocs}
-                    icon={copied ? Check : Copy}
-                    variant="ghost"
-                  >
-                    {copied ? 'COPIED' : 'COPY'}
-                  </Button>
-                </>
-              }
-            >
-              <Button 
-                onClick={() => handleGenerateDocs('code_docs')} 
-                disabled={isLoading} 
-                icon={Sparkles}
-                variant="primary"
-                className="ml-2"
-              >
-                {isLoading ? 'GENERATING...' : 'GENERATE DOCS'}
-              </Button>
-              
-              <Button 
-                onClick={() => handleGenerateDocs('explain')} 
-                disabled={isLoading} 
-                icon={FileText}
-                variant="secondary"
-              >
-                {isLoading ? 'ANALYZING...' : 'EXPLAIN'}
-              </Button>
-            </SectionHeader>
+            {/* Header row: title + action groups */}
+            <div className="flex flex-wrap items-center gap-3 mb-4 w-full">
+              {/* Label */}
+              <div className="flex items-center gap-2 text-[0.85rem] font-semibold text-slate-400 uppercase tracking-[1px] mr-auto">
+                <FileText size={18} />
+                DocGens
+              </div>
+
+              {/* Generate group */}
+              <div className="flex items-center p-1 bg-black/30 border border-white/5 rounded-[22px] gap-1">
+                <Button
+                  onClick={() => handleGenerateDocs('code_docs')}
+                  disabled={isLoading}
+                  icon={Sparkles}
+                  variant="primary"
+                >
+                  <span className="hidden sm:inline">{isLoading ? 'GENERATING...' : 'GENERATE DOCS'}</span>
+                  <span className="sm:hidden">{isLoading ? '...' : 'DOCS'}</span>
+                </Button>
+                <Button
+                  onClick={() => handleGenerateDocs('explain')}
+                  disabled={isLoading}
+                  icon={FileText}
+                  variant="secondary"
+                >
+                  <span className="hidden sm:inline">{isLoading ? 'ANALYZING...' : 'EXPLAIN'}</span>
+                  <span className="sm:hidden">{isLoading ? '...' : 'EXP'}</span>
+                </Button>
+              </div>
+
+              {/* Download + Copy group */}
+              <div className="flex items-center p-1 bg-black/30 border border-white/5 rounded-[22px] gap-1">
+                <Button
+                  onClick={onDownloadClicked}
+                  disabled={!lastAction || isLoading}
+                  icon={Download}
+                  variant="ghost"
+                >
+                  <span className="hidden sm:inline">DOWNLOAD</span>
+                </Button>
+                <Button
+                  onClick={handleCopyDocs}
+                  icon={copied ? Check : Copy}
+                  variant="ghost"
+                >
+                  <span className="hidden sm:inline">{copied ? 'COPIED' : 'COPY'}</span>
+                </Button>
+              </div>
+            </div>
             
             <div className="flex flex-1 min-h-0 bg-black/20 rounded-[20px] overflow-hidden border border-white/10 relative w-full">
               <MarkdownView content={markdownContent} className="h-full p-6" />
