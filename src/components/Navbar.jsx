@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, MessageSquareOff, User, LogOut, Home } from 'lucide-react';
+import { Sparkles, MessageSquareOff, User, LogOut, Home, Users } from 'lucide-react';
 
 /**
  * Top navigation bar component
@@ -15,7 +15,7 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
         <div className="w-10 h-10 rounded-xl bg-linear-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(99,102,241,0.5)]">
           <Sparkles size={20} className="text-white" />
         </div>
-        1nap<span className="text-cyan-400">Docs</span>
+        AEGen
       </div>
       
       <div className="flex gap-4">
@@ -37,12 +37,20 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
           isActive={activeTab === 'Landing'} 
           onClick={() => setActiveTab('Landing')} 
         />
+        <NavbarButton 
+          icon={Users} 
+          label="Community" 
+          isActive={activeTab === 'Community'} 
+          onClick={() => setActiveTab('Community')} 
+        />
 
         {user && (
           <div className="flex items-center gap-4 ml-6 pl-6 border-l border-white/10 h-10">
             <div className="flex flex-col items-end leading-tight">
-              <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold opacity-70">Session Nick</span>
-              <span className="text-sm font-bold text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.3)]">{user.username}</span>
+              <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold opacity-70">Unique TripID</span>
+              <span className="text-sm font-black text-white hover:text-indigo-300 transition-colors cursor-default select-none">
+                {user.username}<span className="text-[#FBBF24] drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] font-black ml-1 select-none text-xs">#{user.tripcode || 'XXXXXXX'}</span>
+              </span>
             </div>
             <button 
               onClick={onLogout}

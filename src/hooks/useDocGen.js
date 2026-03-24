@@ -7,7 +7,7 @@ import { downloadTextFile, downloadPDF } from '../utils/downloader';
  * 
  * @returns {Object} DocGen state and handler functions
  */
-export const useDocGen = (user) => {
+export const useDocGen = (user, project, file) => {
   const [activeSettings, setActiveSettings] = useState(['Concise']);
   const [customStyle, setCustomStyle] = useState(`// Describe your custom tone or style here
 // Example: "Make it sound very professional and explain the business logic clearly."
@@ -81,7 +81,9 @@ Make it incredibly easy to understand for beginners.`);
           styles: activeSettings,
           custom_style: customStyle,
           mode: mode,
-          user_id: user.user_id
+          user_id: user.user_id,
+          project_id: project?.id,
+          file_id: file?.id
         }),
       });
       const data = await response.json();

@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
               <Sparkles size={16} className="text-white" />
             </div>
-            1nap<span className="text-indigo-400">Docs</span>
+            AEGen
           </div>
           <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
             The elite documentation suite for small teams moving at lightspeed.
@@ -68,7 +68,7 @@ const Footer = () => {
 
       <div className="max-w-[1600px] mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-slate-400 text-xs font-bold uppercase tracking-[0.2em]">
-          © 2026 1nap Docs — documentation-Gen carried the load
+          © 2026 AEGen — documentation-Gen carried the load
         </div>
         <div className="flex gap-6 text-slate-400 text-[10px] font-black uppercase tracking-widest">
           <a href="#" className="hover:text-indigo-400 transition-colors">Privacy</a>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 
-const LandingNavbar = ({ onLoginClick, onHomeClick }) => {
+const LandingNavbar = ({ onLoginClick, onHomeClick, onCommunityClick, onSectionClick }) => {
   return (
     <nav className="fixed top-0 left-0 w-full z-[100] bg-slate-900/40 backdrop-blur-xl border-b border-white/5 px-8 md:px-16 py-5 flex items-center justify-between">
       <a 
         href="#" 
         onClick={(e) => {
+          e.preventDefault();
           onHomeClick?.();
         }}
         className="flex items-center gap-3 text-white font-black text-2xl tracking-tighter hover:opacity-80 transition-opacity"
@@ -14,14 +15,49 @@ const LandingNavbar = ({ onLoginClick, onHomeClick }) => {
         <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center shadow-[0_0_20px_rgba(79,70,229,0.4)]">
           <Sparkles size={22} className="text-white fill-white/20" />
         </div>
-        1nap<span className="text-indigo-400">Docs</span>
+        AEGen
       </a>
 
       <div className="flex items-center gap-8">
         <div className="hidden md:flex gap-8 text-sm font-bold text-slate-400">
-          <a href="#about" className="hover:text-white transition-colors">About</a>
-          <a href="#features" className="hover:text-white transition-colors">Features</a>
-          <a href="#built-with" className="hover:text-white transition-colors">Tech Stack</a>
+          <a 
+            href="#about" 
+            onClick={(e) => {
+              // Ensure we return to home before scrolling
+              onSectionClick?.();
+            }}
+            className="hover:text-white transition-colors"
+          >
+            About
+          </a>
+          <a 
+            href="#features" 
+            onClick={(e) => {
+              onSectionClick?.();
+            }}
+            className="hover:text-white transition-colors"
+          >
+            Features
+          </a>
+          <a 
+            href="#built-with" 
+            onClick={(e) => {
+              onSectionClick?.();
+            }}
+            className="hover:text-white transition-colors"
+          >
+            Tech Stack
+          </a>
+          <a 
+            href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              onCommunityClick?.();
+            }}
+            className="hover:text-white transition-colors"
+          >
+            Community
+          </a>
         </div>
         <button 
           onClick={onLoginClick}
