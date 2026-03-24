@@ -69,11 +69,10 @@ const CommunityTab = ({ visible }) => {
                   <button
                     key={filter.id}
                     onClick={() => setSortBy(filter.id)}
-                    className={`flex items-center gap-3 px-6 py-2.5 rounded-[22px] font-black text-xs uppercase tracking-widest transition-all ${
-                      sortBy === filter.id 
-                      ? `bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 scale-105` 
-                      : `text-slate-400 hover:text-white hover:bg-white/5`
-                    }`}
+                    className={`flex items-center gap-3 px-6 py-2.5 rounded-[22px] font-black text-xs uppercase tracking-widest transition-all ${sortBy === filter.id
+                        ? `bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 scale-105`
+                        : `text-slate-400 hover:text-white hover:bg-white/5`
+                      }`}
                   >
                     <filter.icon size={14} />
                     {filter.label}
@@ -88,19 +87,19 @@ const CommunityTab = ({ visible }) => {
                   <tr className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-black">
                     <th className="px-8 py-2">Rank</th>
                     <th className="px-8 py-2">Nomad Identity</th>
-                    <th 
+                    <th
                       className={`px-8 py-2 text-center cursor-pointer hover:text-indigo-400 transition-colors ${sortBy === 'docs' ? 'text-indigo-400' : ''}`}
                       onClick={() => setSortBy('docs')}
                     >
                       Docs Gen {sortBy === 'docs' && '↓'}
                     </th>
-                    <th 
+                    <th
                       className={`px-8 py-2 text-center cursor-pointer hover:text-indigo-400 transition-colors ${sortBy === 'explain' ? 'text-indigo-400' : ''}`}
                       onClick={() => setSortBy('explain')}
                     >
                       Explain Log {sortBy === 'explain' && '↓'}
                     </th>
-                    <th 
+                    <th
                       className={`px-8 py-2 text-right cursor-pointer hover:text-indigo-400 transition-colors ${sortBy === 'status' ? 'text-indigo-400' : ''}`}
                       onClick={() => setSortBy('status')}
                     >
@@ -122,7 +121,7 @@ const CommunityTab = ({ visible }) => {
                         <td className="px-8 py-6 bg-white/5">
                           <div className="flex items-center gap-5">
                             <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl border ${user.is_online ? 'bg-indigo-500/20 border-indigo-500/30 text-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.2)]' : 'bg-slate-800/50 border-white/5 text-slate-600'}`}>
-                               {user.nickname.charAt(0).toUpperCase()}
+                              {user.nickname.charAt(0).toUpperCase()}
                             </div>
                             <div className="flex flex-col">
                               <span className="text-white font-black text-xl group-hover:text-indigo-300 transition-colors">{user.nickname}</span>

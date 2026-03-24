@@ -17,31 +17,31 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
         </div>
         AEGen
       </div>
-      
+
       <div className="flex gap-4">
-        <NavbarButton 
-          icon={Sparkles} 
-          label="DocGen" 
-          isActive={activeTab === 'DocGen'} 
-          onClick={() => setActiveTab('DocGen')} 
+        <NavbarButton
+          icon={Sparkles}
+          label="DocGen"
+          isActive={activeTab === 'DocGen'}
+          onClick={() => setActiveTab('DocGen')}
         />
-        <NavbarButton 
-          icon={MessageSquareOff} 
-          label="Chat" 
-          isActive={activeTab === 'Chat'} 
-          onClick={() => setActiveTab('Chat')} 
+        <NavbarButton
+          icon={MessageSquareOff}
+          label="Chat"
+          isActive={activeTab === 'Chat'}
+          onClick={() => setActiveTab('Chat')}
         />
-        <NavbarButton 
-          icon={Home} 
-          label="Home" 
-          isActive={activeTab === 'Landing'} 
-          onClick={() => setActiveTab('Landing')} 
+        <NavbarButton
+          icon={Home}
+          label="Home"
+          isActive={activeTab === 'Landing'}
+          onClick={() => setActiveTab('Landing')}
         />
-        <NavbarButton 
-          icon={Users} 
-          label="Community" 
-          isActive={activeTab === 'Community'} 
-          onClick={() => setActiveTab('Community')} 
+        <NavbarButton
+          icon={Users}
+          label="Community"
+          isActive={activeTab === 'Community'}
+          onClick={() => setActiveTab('Community')}
         />
 
         {user && (
@@ -52,7 +52,7 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
                 {user.username}<span className="text-[#FBBF24] drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] font-black ml-1 select-none text-xs">#{user.tripcode || 'XXXXXXX'}</span>
               </span>
             </div>
-            <button 
+            <button
               onClick={onLogout}
               className="p-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 transition-all group active:scale-95"
               title="Logout Session"
@@ -69,8 +69,8 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
 };
 
 const NavbarButton = ({ icon: Icon, label, isActive, onClick }) => (
-  <button 
-    className={`px-5 py-2.5 rounded-xl border text-slate-50 font-[Outfit] font-semibold text-[0.9rem] tracking-[0.5px] cursor-pointer transition-all duration-300 flex items-center gap-2 hover:-translate-y-[2px] hover:border-indigo-500 hover:shadow-[0_10px_20px_-10px_rgba(99,102,241,0.5)] ${isActive ? 'bg-linear-to-br from-indigo-500 to-cyan-500 border-transparent shadow-[0_8px_30px_-10px_rgba(99,102,241,0.6)]' : 'bg-transparent border-transparent hover:bg-white/5'}`} 
+  <button
+    className={`px-5 py-2.5 rounded-xl border text-slate-50 font-[Outfit] font-semibold text-[0.9rem] tracking-[0.5px] cursor-pointer transition-all duration-300 flex items-center gap-2 hover:-translate-y-[2px] hover:border-indigo-500 hover:shadow-[0_10px_20px_-10px_rgba(99,102,241,0.5)] ${isActive ? 'bg-linear-to-br from-indigo-500 to-cyan-500 border-transparent shadow-[0_8px_30px_-10px_rgba(99,102,241,0.6)]' : 'bg-transparent border-transparent hover:bg-white/5'}`}
     onClick={onClick}
   >
     <Icon size={16} /><span>{label}</span>

@@ -4,8 +4,8 @@ import { Sparkles } from 'lucide-react';
 const LandingNavbar = ({ onLoginClick, onHomeClick, onCommunityClick, onSectionClick }) => {
   return (
     <nav className="fixed top-0 left-0 w-full z-[100] bg-slate-900/40 backdrop-blur-xl border-b border-white/5 px-8 md:px-16 py-5 flex items-center justify-between">
-      <a 
-        href="#" 
+      <a
+        href="#"
         onClick={(e) => {
           e.preventDefault();
           onHomeClick?.();
@@ -20,8 +20,8 @@ const LandingNavbar = ({ onLoginClick, onHomeClick, onCommunityClick, onSectionC
 
       <div className="flex items-center gap-8">
         <div className="hidden md:flex gap-8 text-sm font-bold text-slate-400">
-          <a 
-            href="#about" 
+          <a
+            href="#about"
             onClick={(e) => {
               // Ensure we return to home before scrolling
               onSectionClick?.();
@@ -30,8 +30,8 @@ const LandingNavbar = ({ onLoginClick, onHomeClick, onCommunityClick, onSectionC
           >
             About
           </a>
-          <a 
-            href="#features" 
+          <a
+            href="#features"
             onClick={(e) => {
               onSectionClick?.();
             }}
@@ -39,8 +39,8 @@ const LandingNavbar = ({ onLoginClick, onHomeClick, onCommunityClick, onSectionC
           >
             Features
           </a>
-          <a 
-            href="#built-with" 
+          <a
+            href="#built-with"
             onClick={(e) => {
               onSectionClick?.();
             }}
@@ -48,8 +48,8 @@ const LandingNavbar = ({ onLoginClick, onHomeClick, onCommunityClick, onSectionC
           >
             Tech Stack
           </a>
-          <a 
-            href="#" 
+          <a
+            href="#"
             onClick={(e) => {
               e.preventDefault();
               onCommunityClick?.();
@@ -59,7 +59,7 @@ const LandingNavbar = ({ onLoginClick, onHomeClick, onCommunityClick, onSectionC
             Community
           </a>
         </div>
-        <button 
+        <button
           onClick={onLoginClick}
           className="px-6 py-2.5 bg-white text-[#0f172a] hover:bg-indigo-400 hover:text-white rounded-xl font-black transition-all text-sm uppercase tracking-widest"
         >
